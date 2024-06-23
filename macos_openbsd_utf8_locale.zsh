@@ -8,17 +8,16 @@ LOCALE_DIR="${PATH_LOCALE}/${LOCALE_NAME}"
 TMP=$(mktemp)
 
 # script will fail if any command fail
-set -e
-set -o pipefail
+set -euxo pipefail
 
-echo "Building locale from $URL"
+{ echo "Building locale from $URL" } 2>/dev/null
 curl -s $URL | sed 's/ENCODING        "UTF8"/ENCODING        "UTF-8"/' | mklocale > $TMP
 
-echo "Installing locale to $LOCALE_DIR"
+{ echo "Installing locale to $LOCALE_DIR" } 2>/dev/null
 sudo mkdir -p $LOCALE_DIR && mv $TMP $LOCALE_DIR/LC_CTYPE
 
-echo "OpenBSD UTF-8 locale has been succesfully installed
+{ echo "OpenBSD UTF-8 locale has been succesfully installed
 Add following environment variables to ~/.zshrc: 
 
 	export PATH_LOCALE=${PATH_LOCALE}
-	export LC_CTYPE=${LOCALE_NAME}"
+	export LC_CTYPE=${LOCALE_NAME}" } 2>/dev/null
