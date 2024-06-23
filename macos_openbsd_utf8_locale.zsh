@@ -18,7 +18,7 @@ echo "Installing locale to $LOCALE_DIR"
 sudo mkdir -p $LOCALE_DIR && mv $TMP $LOCALE_DIR/LC_CTYPE
 
 echo "OpenBSD UTF-8 locale has been succesfully installed
-Define following environment variables (~/.zshrc): 
+Add following environment variables to ~/.zshrc: 
 
 	export PATH_LOCALE=${PATH_LOCALE}
 	export LC_CTYPE=${LOCALE_NAME}"
